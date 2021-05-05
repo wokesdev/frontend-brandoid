@@ -30,9 +30,6 @@ class IsBanned
 
         // Checking whether user is banned or no.
         if ($user['message'] == 'Banned.') {
-            // Redirecting to login page.
-            return redirect()->route('login');
-
             // Removing auth token on session.
             $removeToken = session()->forget('token');
         }
