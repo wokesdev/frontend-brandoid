@@ -2,6 +2,8 @@
 
 ### Please follow steps below to use this front-end on your server.
 
+This is an application for counting income statement along with some features for your business.
+
 Install all the packages needed using composer, if you haven't install composer, you can get it on https://getcomposer.org.
 
     composer install
