@@ -31,6 +31,9 @@ class UserController extends Controller
         // Sending PUT request to API for giving admin privilege to user.
         $response = Http::withToken($token)->put('https://api.jujutsu.xyz/api/v1/user-make-admin/' . $id);
 
+        // Removing auth token on session.
+        $removeToken = session()->forget('token');
+
         // Returning the view along with the response's message.
         return redirect()->route('admin.user.index')->with('status', $response['message']);
     }
@@ -42,6 +45,9 @@ class UserController extends Controller
 
         // Sending PUT request to API for removing admin privilege from user.
         $response = Http::withToken($token)->put('https://api.jujutsu.xyz/api/v1/user-remove-admin/' . $id);
+
+        // Removing auth token on session.
+        $removeToken = session()->forget('token');
 
         // Returning the view along with the response's message.
         return redirect()->route('admin.user.index')->with('status', $response['message']);
@@ -55,6 +61,9 @@ class UserController extends Controller
         // Sending PUT request to API for banning user.
         $response = Http::withToken($token)->put('https://api.jujutsu.xyz/api/v1/user-ban-user/' . $id);
 
+        // Removing auth token on session.
+        $removeToken = session()->forget('token');
+
         // Returning the view along with the response's message.
         return redirect()->route('admin.user.index')->with('status', $response['message']);
     }
@@ -66,6 +75,9 @@ class UserController extends Controller
 
         // Sending PUT request to API for unbanning user.
         $response = Http::withToken($token)->put('https://api.jujutsu.xyz/api/v1/user-unban-user/' . $id);
+
+        // Removing auth token on session.
+        $removeToken = session()->forget('token');
 
         // Returning the view along with the response's message.
         return redirect()->route('admin.user.index')->with('status', $response['message']);
