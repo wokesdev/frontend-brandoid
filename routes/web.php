@@ -23,7 +23,7 @@ Route::get('/register', 'AuthController@registerView')->name('register');
 Route::post('/register', 'AuthController@register')->name('register');
 Route::post('/logout', 'AuthController@logout')->name('logout')->middleware('is.auth');
 
-Route::middleware('is.admin')->namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['is.admin', 'is.banned'])->namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/dashboard-data-user', 'DashboardController@userCount')->name('dashboard-data.user');
     Route::get('/dashboard-data-admin', 'DashboardController@adminCount')->name('dashboard-data.admin');
@@ -39,7 +39,7 @@ Route::middleware('is.admin')->namespace('Admin')->prefix('admin')->name('admin.
     Route::put('/user-unban-user/{id}', 'UserController@unbanUser')->name('user.unban-user');
 });
 
-Route::middleware('is.auth')->namespace('User')->name('user.')->group(function () {
+Route::middleware(['is.auth', 'is.banned'])->namespace('User')->name('user.')->group(function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/dashboard-data-purchase', 'DashboardController@purchaseCount')->name('dashboard-data.purchase');
     Route::get('/dashboard-data-sale', 'DashboardController@saleCount')->name('dashboard-data.sale');
