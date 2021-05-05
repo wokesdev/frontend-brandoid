@@ -28,8 +28,8 @@ class IsBanned
         // Retrieving user profile from API using session.
         $user = Http::withToken($token)->get('https://api.jujutsu.xyz/api/v1/me');
 
-        // Checking whether user is admin or no.
-        if ($user['data']['is_banned'] == 1) {
+        // Checking whether user is banned or no.
+        if ($user['message'] == 'Banned.') {
             // Redirecting to login page.
             return redirect()->route('login');
         }
